@@ -1,0 +1,13 @@
+name = "GRAD Endgame";
+author = "Gruppe Adler";
+picture = "Adler.paa";
+//actionName = "Website";
+//action = "https://github.com/gruppe-adler/grad_endgame/releases";
+description = "Gruppe Adler Endgame";
+logo = "Adler.paa";
+logoOver = "Adler.paa";
+tooltip = "Gruppe Adler Endgame";
+overview = "";
+overviewPicture = "Adler.paa";
+overviewText = "";
+overviewFootnote = "";
