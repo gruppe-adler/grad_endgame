@@ -1,0 +1,4 @@
+2023-09-06T16:27:19.464569Z TRACE ThreadId(01) version: 1.8.0
+2023-09-06T16:27:19.464625Z TRACE ThreadId(01) platform: windows
+2023-09-06T16:27:19.465064Z TRACE ThreadId(01) checking for version macro in "addons/main/script_version.hpp"
+2023-09-06T16:27:19.467805Z ERROR ThreadId(01) panicked at 'Unable to read version: Git(Error { code: -36, klass: 7, message: "repository path 'P:/x/grad_endgame/' is not owned by current user" })', bin\src\context.rs:35:40
