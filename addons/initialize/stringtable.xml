@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="GRAD">
+    <Package name="endgame">
+        <Key ID="STR_grad_endgame_functions_settingCategory">
+            <English>GRAD Endgame</English>
+            <German>GRAD Endgame</German>
+        </Key>
+    </Package>
+</Project>

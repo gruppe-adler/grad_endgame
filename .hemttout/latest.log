@@ -1,4 +1,161 @@
-2023-09-06T16:27:19.464569Z TRACE ThreadId(01) version: 1.8.0
-2023-09-06T16:27:19.464625Z TRACE ThreadId(01) platform: windows
-2023-09-06T16:27:19.465064Z TRACE ThreadId(01) checking for version macro in "addons/main/script_version.hpp"
-2023-09-06T16:27:19.467805Z ERROR ThreadId(01) panicked at 'Unable to read version: Git(Error { code: -36, klass: 7, message: "repository path 'P:/x/grad_endgame/' is not owned by current user" })', bin\src\context.rs:35:40
+2023-09-06T18:05:43.763210Z TRACE ThreadId(01) version: 1.8.0
+2023-09-06T18:05:43.763263Z TRACE ThreadId(01) platform: windows
+2023-09-06T18:05:43.763705Z TRACE ThreadId(01) checking for version macro in "addons/main/script_version.hpp"
+2023-09-06T18:05:43.766989Z  INFO ThreadId(01) Config loaded for Gruppe Adler Trenches 1.0.0.0-47d5e2eb
+2023-09-06T18:05:43.767004Z TRACE ThreadId(01) using temporary folder: "C:\\Users\\march\\AppData\\Local\\Temp\\hemtt\\x_grad_endgame"
+2023-09-06T18:05:43.767010Z TRACE ThreadId(01) using project folder: "P:\\x\\grad_endgame"
+2023-09-06T18:05:43.767014Z TRACE ThreadId(01) using out folder: "P:\\x\\grad_endgame\\.hemttout"
+2023-09-06T18:05:43.767063Z TRACE ThreadId(01) using build folder: "P:\\x\\grad_endgame\\.hemttout\\build"
+2023-09-06T18:05:43.767209Z TRACE ThreadId(01) vfs overlay at root: "C:\\Users\\march\\AppData\\Local\\Temp\\hemtt\\x_grad_endgame\\output"
+2023-09-06T18:05:43.767218Z TRACE ThreadId(01) vfs root: "P:\\x\\grad_endgame"
+2023-09-06T18:05:43.767695Z  INFO ThreadId(01) Creating `build` version
+2023-09-06T18:05:43.767706Z TRACE ThreadId(01) phase: init (start)
+2023-09-06T18:05:43.777093Z TRACE ThreadId(01) link "C:\\Users\\march\\AppData\\Local\\Temp\\hemtt\\x_grad_endgame\\source\\x\\grad_endgame\\addons\\initialize" => "P:\\x\\grad_endgame\\addons\\initialize"
+2023-09-06T18:05:43.785123Z TRACE ThreadId(01) link "C:\\Users\\march\\AppData\\Local\\Temp\\hemtt\\x_grad_endgame\\source\\x\\grad_endgame\\addons\\main" => "P:\\x\\grad_endgame\\addons\\main"
+2023-09-06T18:05:43.792832Z TRACE ThreadId(01) link "C:\\Users\\march\\AppData\\Local\\Temp\\hemtt\\x_grad_endgame\\source\\x\\grad_endgame\\addons\\objectiv" => "P:\\x\\grad_endgame\\addons\\objectiv"
+2023-09-06T18:05:43.800513Z TRACE ThreadId(01) link "C:\\Users\\march\\AppData\\Local\\Temp\\hemtt\\x_grad_endgame\\source\\x\\grad_endgame\\addons\\terminate" => "P:\\x\\grad_endgame\\addons\\terminate"
+2023-09-06T18:05:43.808162Z TRACE ThreadId(01) link "C:\\Users\\march\\AppData\\Local\\Temp\\hemtt\\x_grad_endgame\\source\\a3\\data_f" => "P:\\x\\grad_endgame\\include\\a3\\data_f"
+2023-09-06T18:05:43.815812Z TRACE ThreadId(01) link "C:\\Users\\march\\AppData\\Local\\Temp\\hemtt\\x_grad_endgame\\source\\a3\\editor_f" => "P:\\x\\grad_endgame\\include\\a3\\editor_f"
+2023-09-06T18:05:43.823181Z TRACE ThreadId(01) link "C:\\Users\\march\\AppData\\Local\\Temp\\hemtt\\x_grad_endgame\\source\\a3\\ui_f" => "P:\\x\\grad_endgame\\include\\a3\\ui_f"
+2023-09-06T18:05:43.830788Z TRACE ThreadId(01) link "C:\\Users\\march\\AppData\\Local\\Temp\\hemtt\\x_grad_endgame\\source\\x\\cba" => "P:\\x\\grad_endgame\\include\\x\\cba"
+2023-09-06T18:05:43.839227Z TRACE ThreadId(01) link "C:\\Users\\march\\AppData\\Local\\Temp\\hemtt\\x_grad_endgame\\source\\z\\ace" => "P:\\x\\grad_endgame\\include\\z\\ace"
+2023-09-06T18:05:43.847396Z TRACE ThreadId(01) phase: init (sqf) (start)
+2023-09-06T18:05:43.847403Z TRACE ThreadId(01) phase: init (sqf) (done)
+2023-09-06T18:05:43.847407Z TRACE ThreadId(01) phase: init (Rapifier) (start)
+2023-09-06T18:05:43.847409Z TRACE ThreadId(01) phase: init (Rapifier) (done)
+2023-09-06T18:05:43.847415Z TRACE ThreadId(01) phase: init (Binarize) (start)
+2023-09-06T18:05:43.847472Z TRACE ThreadId(01) phase: init (Binarize) (done)
+2023-09-06T18:05:43.847479Z TRACE ThreadId(01) phase: init (Hooks) (start)
+2023-09-06T18:05:43.847504Z TRACE ThreadId(01) no hooks folder
+2023-09-06T18:05:43.847508Z TRACE ThreadId(01) phase: init (Hooks) (done)
+2023-09-06T18:05:43.847512Z TRACE ThreadId(01) phase: init (ArmaScriptCompiler) (start)
+2023-09-06T18:05:43.847520Z TRACE ThreadId(01) using asc folder at "C:\\Users\\march\\AppData\\Local\\Temp\\hemtt\\x_grad_endgame\\asc"
+2023-09-06T18:05:43.847763Z TRACE ThreadId(01) phase: init (ArmaScriptCompiler) (done)
+2023-09-06T18:05:43.847772Z TRACE ThreadId(01) phase: init (Files) (start)
+2023-09-06T18:05:43.847775Z TRACE ThreadId(01) phase: init (Files) (done)
+2023-09-06T18:05:43.847778Z TRACE ThreadId(01) phase: init (done)
+2023-09-06T18:05:43.847782Z TRACE ThreadId(01) phase: check (start)
+2023-09-06T18:05:43.847785Z TRACE ThreadId(01) phase: check (sqf) (start)
+2023-09-06T18:05:43.847822Z TRACE ThreadId(01) phase: check (sqf) (done)
+2023-09-06T18:05:43.847826Z TRACE ThreadId(01) phase: check (Rapifier) (start)
+2023-09-06T18:05:43.847829Z TRACE ThreadId(01) phase: check (Rapifier) (done)
+2023-09-06T18:05:43.847831Z TRACE ThreadId(01) phase: check (Binarize) (start)
+2023-09-06T18:05:43.847834Z TRACE ThreadId(01) phase: check (Binarize) (done)
+2023-09-06T18:05:43.847836Z TRACE ThreadId(01) phase: check (Hooks) (start)
+2023-09-06T18:05:43.847839Z TRACE ThreadId(01) phase: check (Hooks) (done)
+2023-09-06T18:05:43.847841Z TRACE ThreadId(01) phase: check (ArmaScriptCompiler) (start)
+2023-09-06T18:05:43.847844Z TRACE ThreadId(01) phase: check (ArmaScriptCompiler) (done)
+2023-09-06T18:05:43.847846Z TRACE ThreadId(01) phase: check (Files) (start)
+2023-09-06T18:05:43.847849Z TRACE ThreadId(01) phase: check (Files) (done)
+2023-09-06T18:05:43.847851Z TRACE ThreadId(01) phase: check (done)
+2023-09-06T18:05:43.847855Z TRACE ThreadId(01) phase: pre_build (start)
+2023-09-06T18:05:43.847858Z TRACE ThreadId(01) phase: pre_build (sqf) (start)
+2023-09-06T18:05:43.847860Z TRACE ThreadId(01) phase: pre_build (sqf) (done)
+2023-09-06T18:05:43.847862Z TRACE ThreadId(01) phase: pre_build (Rapifier) (start)
+2023-09-06T18:05:43.849268Z DEBUG ThreadId(02) rapifying /addons/objectiv/config.cpp
+2023-09-06T18:05:43.849413Z DEBUG ThreadId(09) rapifying /addons/terminate/config.cpp
+2023-09-06T18:05:43.849550Z DEBUG ThreadId(05) rapifying /addons/main/config.cpp
+2023-09-06T18:05:43.849913Z DEBUG ThreadId(08) rapifying /addons/initialize/config.cpp
+2023-09-06T18:05:43.909430Z  INFO ThreadId(01) Rapified 4 addon configs
+2023-09-06T18:05:43.909451Z TRACE ThreadId(01) phase: pre_build (Rapifier) (done)
+2023-09-06T18:05:43.909456Z TRACE ThreadId(01) phase: pre_build (Binarize) (start)
+2023-09-06T18:05:43.915971Z  INFO ThreadId(01) Binarized 0 files
+2023-09-06T18:05:43.915982Z TRACE ThreadId(01) phase: pre_build (Binarize) (done)
+2023-09-06T18:05:43.915986Z TRACE ThreadId(01) phase: pre_build (Hooks) (start)
+2023-09-06T18:05:43.915991Z TRACE ThreadId(01) phase: pre_build (Hooks) (done)
+2023-09-06T18:05:43.915994Z TRACE ThreadId(01) phase: pre_build (ArmaScriptCompiler) (start)
+2023-09-06T18:05:43.916093Z TRACE ThreadId(01) unpacking "asc.exe" to "C:\\Users\\march\\AppData\\Local\\Temp\\hemtt\\x_grad_endgame\\asc\\asc.exe"
+2023-09-06T18:05:44.148759Z DEBUG ThreadId(01) ASC Preprocess took 229
+2023-09-06T18:05:44.220819Z DEBUG ThreadId(01) ASC took 71
+2023-09-06T18:05:44.228319Z  INFO ThreadId(01) Compiled 17 sqf files
+2023-09-06T18:05:44.228786Z TRACE ThreadId(01) phase: pre_build (ArmaScriptCompiler) (done)
+2023-09-06T18:05:44.228792Z TRACE ThreadId(01) phase: pre_build (Files) (start)
+2023-09-06T18:05:44.228796Z TRACE ThreadId(01) phase: pre_build (Files) (done)
+2023-09-06T18:05:44.228799Z TRACE ThreadId(01) phase: pre_build (done)
+2023-09-06T18:05:44.228801Z TRACE ThreadId(01) phase: build (start)
+2023-09-06T18:05:44.230094Z DEBUG ThreadId(04) building "addons/main" => "P:\\x\\grad_endgame\\.hemttout\\build\\addons\\grad_endgame_main.pbo"
+2023-09-06T18:05:44.230097Z DEBUG ThreadId(02) building "addons/initialize" => "P:\\x\\grad_endgame\\.hemttout\\build\\addons\\grad_endgame_initialize.pbo"
+2023-09-06T18:05:44.230103Z DEBUG ThreadId(03) building "addons/objectiv" => "P:\\x\\grad_endgame\\.hemttout\\build\\addons\\grad_endgame_objectiv.pbo"
+2023-09-06T18:05:44.230114Z DEBUG ThreadId(05) building "addons/terminate" => "P:\\x\\grad_endgame\\.hemttout\\build\\addons\\grad_endgame_terminate.pbo"
+2023-09-06T18:05:44.230354Z TRACE ThreadId(04) adding file "script_component.hpp"
+2023-09-06T18:05:44.230361Z TRACE ThreadId(02) adding file "CfgVehicles.hpp"
+2023-09-06T18:05:44.230370Z TRACE ThreadId(03) adding file "XEH_PREP.hpp"
+2023-09-06T18:05:44.230421Z TRACE ThreadId(05) adding file "XEH_preInit.sqf"
+2023-09-06T18:05:44.230434Z TRACE ThreadId(02) adding file "XEH_preInit.sqfc"
+2023-09-06T18:05:44.230444Z TRACE ThreadId(03) adding file "config.bin"
+2023-09-06T18:05:44.230450Z TRACE ThreadId(02) adding file "XEH_postInit.sqfc"
+2023-09-06T18:05:44.230456Z TRACE ThreadId(03) adding file "XEH_preStart.sqfc"
+2023-09-06T18:05:44.230580Z TRACE ThreadId(02) adding file "initSettings.sqf"
+2023-09-06T18:05:44.230656Z TRACE ThreadId(05) adding file "CfgEventHandlers.hpp"
+2023-09-06T18:05:44.230683Z TRACE ThreadId(04) adding file "script_macros.hpp"
+2023-09-06T18:05:44.230715Z TRACE ThreadId(03) adding file "XEH_preInit.sqf"
+2023-09-06T18:05:44.230731Z TRACE ThreadId(05) adding file "config.bin"
+2023-09-06T18:05:44.230758Z TRACE ThreadId(02) adding file "XEH_preInit.sqf"
+2023-09-06T18:05:44.230826Z TRACE ThreadId(02) adding file "XEH_preStart.sqfc"
+2023-09-06T18:05:44.230837Z TRACE ThreadId(02) adding file "config.bin"
+2023-09-06T18:05:44.230856Z TRACE ThreadId(05) adding file "XEH_postInit.sqf"
+2023-09-06T18:05:44.230903Z TRACE ThreadId(03) adding file "stringtable.xml"
+2023-09-06T18:05:44.230974Z TRACE ThreadId(03) adding file "XEH_preInit.sqfc"
+2023-09-06T18:05:44.230981Z TRACE ThreadId(02) adding file "CfgEventHandlers.hpp"
+2023-09-06T18:05:44.231077Z TRACE ThreadId(05) adding file "script_component.hpp"
+2023-09-06T18:05:44.231100Z TRACE ThreadId(03) adding file "CfgEventHandlers.hpp"
+2023-09-06T18:05:44.231126Z TRACE ThreadId(04) adding file "CfgSettings.hpp"
+2023-09-06T18:05:44.231291Z TRACE ThreadId(05) adding file "XEH_preStart.sqf"
+2023-09-06T18:05:44.231322Z TRACE ThreadId(03) adding file "script_component.hpp"
+2023-09-06T18:05:44.231366Z TRACE ThreadId(02) adding file "XEH_postInit.sqf"
+2023-09-06T18:05:44.231409Z TRACE ThreadId(04) adding file "script_mod.hpp"
+2023-09-06T18:05:44.231520Z TRACE ThreadId(04) adding file "config.bin"
+2023-09-06T18:05:44.231539Z TRACE ThreadId(05) adding file "XEH_PREP.hpp"
+2023-09-06T18:05:44.231550Z TRACE ThreadId(03) adding file "XEH_preStart.sqf"
+2023-09-06T18:05:44.231591Z TRACE ThreadId(02) adding file "script_component.hpp"
+2023-09-06T18:05:44.231710Z TRACE ThreadId(04) adding file "script_version.hpp"
+2023-09-06T18:05:44.231752Z TRACE ThreadId(05) adding file "XEH_preInit.sqfc"
+2023-09-06T18:05:44.231753Z TRACE ThreadId(03) adding file "XEH_postInit.sqf"
+2023-09-06T18:05:44.231783Z TRACE ThreadId(02) adding file "stringtable.xml"
+2023-09-06T18:05:44.232012Z TRACE ThreadId(02) adding file "XEH_PREP.hpp"
+2023-09-06T18:05:44.232118Z TRACE ThreadId(05) adding file "XEH_preStart.sqfc"
+2023-09-06T18:05:44.232352Z TRACE ThreadId(03) adding file "functions\\fnc_initializeObjective.sqf"
+2023-09-06T18:05:44.232357Z TRACE ThreadId(02) adding file "XEH_preStart.sqf"
+2023-09-06T18:05:44.232454Z TRACE ThreadId(05) adding file "functions\\fnc_terminate.sqf"
+2023-09-06T18:05:44.232535Z TRACE ThreadId(03) adding file "functions\\script_component.hpp"
+2023-09-06T18:05:44.232609Z TRACE ThreadId(03) adding file "functions\\fnc_initializeObjective.sqfc"
+2023-09-06T18:05:44.232728Z TRACE ThreadId(05) adding file "functions\\script_component.hpp"
+2023-09-06T18:05:44.232778Z TRACE ThreadId(02) adding file "functions\\fnc_getAllSyncedBases.sqfc"
+2023-09-06T18:05:44.232793Z TRACE ThreadId(02) adding file "functions\\fnc_getRandomObjectivFromRandomiser.sqfc"
+2023-09-06T18:05:44.232827Z TRACE ThreadId(05) adding file "functions\\fnc_terminate.sqfc"
+2023-09-06T18:05:44.232928Z TRACE ThreadId(02) adding file "functions\\fnc_getAllSyncedObjectives.sqf"
+2023-09-06T18:05:44.233115Z TRACE ThreadId(02) adding file "functions\\fnc_getAllSyncedBases.sqf"
+2023-09-06T18:05:44.233290Z TRACE ThreadId(02) adding file "functions\\script_component.hpp"
+2023-09-06T18:05:44.233459Z TRACE ThreadId(02) adding file "functions\\fnc_init.sqf"
+2023-09-06T18:05:44.233524Z TRACE ThreadId(02) adding file "functions\\fnc_setStage.sqfc"
+2023-09-06T18:05:44.233647Z TRACE ThreadId(02) adding file "functions\\fnc_setStage.sqf"
+2023-09-06T18:05:44.233817Z TRACE ThreadId(02) adding file "functions\\fnc_getAllSyncedRandomisers.sqf"
+2023-09-06T18:05:44.233884Z TRACE ThreadId(02) adding file "functions\\fnc_getAllSyncedRandomisers.sqfc"
+2023-09-06T18:05:44.234039Z TRACE ThreadId(02) adding file "functions\\fnc_getSyncedEndGameObjectives.sqf"
+2023-09-06T18:05:44.234126Z TRACE ThreadId(02) adding file "functions\\fnc_init.sqfc"
+2023-09-06T18:05:44.234141Z TRACE ThreadId(02) adding file "functions\\fnc_getAllSyncedObjectives.sqfc"
+2023-09-06T18:05:44.234268Z TRACE ThreadId(02) adding file "functions\\fnc_getRandomObjectivFromRandomiser.sqf"
+2023-09-06T18:05:44.234338Z TRACE ThreadId(02) adding file "functions\\fnc_setModule.sqfc"
+2023-09-06T18:05:44.234462Z TRACE ThreadId(02) adding file "functions\\fnc_setModule.sqf"
+2023-09-06T18:05:44.234533Z TRACE ThreadId(02) adding file "functions\\fnc_getSyncedEndGameObjectives.sqfc"
+2023-09-06T18:05:44.235240Z  INFO ThreadId(01) Built 4 PBOs
+2023-09-06T18:05:44.235248Z TRACE ThreadId(01) phase: build (done)
+2023-09-06T18:05:44.235252Z TRACE ThreadId(01) phase: post_build (start)
+2023-09-06T18:05:44.235255Z TRACE ThreadId(01) phase: post_build (sqf) (start)
+2023-09-06T18:05:44.235258Z TRACE ThreadId(01) phase: post_build (sqf) (done)
+2023-09-06T18:05:44.235260Z TRACE ThreadId(01) phase: post_build (Rapifier) (start)
+2023-09-06T18:05:44.235263Z TRACE ThreadId(01) phase: post_build (Rapifier) (done)
+2023-09-06T18:05:44.235266Z TRACE ThreadId(01) phase: post_build (Binarize) (start)
+2023-09-06T18:05:44.235268Z TRACE ThreadId(01) phase: post_build (Binarize) (done)
+2023-09-06T18:05:44.235271Z TRACE ThreadId(01) phase: post_build (Hooks) (start)
+2023-09-06T18:05:44.235274Z TRACE ThreadId(01) phase: post_build (Hooks) (done)
+2023-09-06T18:05:44.235276Z TRACE ThreadId(01) phase: post_build (ArmaScriptCompiler) (start)
+2023-09-06T18:05:44.235279Z TRACE ThreadId(01) phase: post_build (ArmaScriptCompiler) (done)
+2023-09-06T18:05:44.235281Z TRACE ThreadId(01) phase: post_build (Files) (start)
+2023-09-06T18:05:44.235670Z DEBUG ThreadId(01) copying "/mod.cpp" => "P:\\x\\grad_endgame\\.hemttout\\build\\mod.cpp"
+2023-09-06T18:05:44.236947Z DEBUG ThreadId(01) copying "/adler.paa" => "P:\\x\\grad_endgame\\.hemttout\\build\\adler.paa"
+2023-09-06T18:05:44.237790Z DEBUG ThreadId(01) copying "/README.md" => "P:\\x\\grad_endgame\\.hemttout\\build\\README.md"
+2023-09-06T18:05:44.238194Z DEBUG ThreadId(01) copying "/LICENSE" => "P:\\x\\grad_endgame\\.hemttout\\build\\LICENSE"
+2023-09-06T18:05:44.294244Z  INFO ThreadId(01) Copied 4 files
+2023-09-06T18:05:44.294261Z TRACE ThreadId(01) phase: post_build (Files) (done)
+2023-09-06T18:05:44.294266Z TRACE ThreadId(01) phase: post_build (done)

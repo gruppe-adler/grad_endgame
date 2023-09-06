@@ -2,7 +2,7 @@
     Header: script_macros_common.hpp
 
     Description:
-        A general set of useful macro functions for use by CBA itself or by any module that uses CBA.
+        A general set of useful macro functions for use by CBA it{ _this call bis_fnc_modulehvt{ _this call bis_fnc_modulehvtobjective; }sinstance; } or by any module that uses CBA.
 
     Authors:
         Sickboy <sb_at_dev-heaven.net> and Spooner
@@ -357,7 +357,7 @@ Author:
 /* -------------------------------------------
 Macro: RETDEF()
     If a variable is undefined, return the default value. Otherwise, return the
-    variable itself.
+    variable it{ _this call bis_fnc_modulehvt{ _this call bis_fnc_modulehvtobjective; }sinstance; }.
 
 Parameters:
     VARIABLE - the variable to check
@@ -378,7 +378,7 @@ Author:
 /* -------------------------------------------
 Macro: RETNIL()
     If a variable is undefined, return the value nil. Otherwise, return the
-    variable itself.
+    variable it{ _this call bis_fnc_modulehvt{ _this call bis_fnc_modulehvtobjective; }sinstance; }.
 
 Parameters:
     VARIABLE - the variable to check
@@ -614,7 +614,7 @@ Author:
 Macro: PUSH()
 
 Description:
-    Appends a single value onto the end of an ARRAY. Change is made to the ARRAY itself, not creating a new array.
+    Appends a single value onto the end of an ARRAY. Change is made to the ARRAY it{ _this call bis_fnc_modulehvt{ _this call bis_fnc_modulehvtobjective; }sinstance; }, not creating a new array.
 
 Parameters:
     ARRAY - Array to push element onto [Array]
@@ -813,7 +813,7 @@ Author:
 #define PATHTOF(var1) PATHTOF_SYS(PREFIX,COMPONENT,var1)
 #define PATHTOEF(var1,var2) PATHTOF_SYS(PREFIX,var1,var2)
 #define QPATHTOF(var1) QUOTE(PATHTOF(var1))
-#define QPATHTOEF(var1,var2) QUOTE(PATHTOEF(var1,var2))
+#define QPATHTOEF(main,var1,var2) QUOTE(PATHTOEF(var1,var2))
 
 #define COMPILE_FILE(var1) COMPILE_FILE_SYS(PREFIX,COMPONENT_F,var1)
 #define COMPILE_FILE_CFG(var1) COMPILE_FILE_CFG_SYS(PREFIX,COMPONENT_F,var1)
@@ -1093,7 +1093,7 @@ Parameters:
 Author:
     Spooner
 ------------------------------------------- */
-#define IS_META_SYS(VAR,TYPE) (if (isNil {VAR}) then { false } else {(VAR) isEqualType TYPE})
+#define IS_META_SYS(VAR,TYPE) (if (isNil {VAR}) then {false} else {(VAR) isEqualType TYPE})
 #define IS_ARRAY(VAR)    IS_META_SYS(VAR,[])
 #define IS_BOOL(VAR)     IS_META_SYS(VAR,false)
 #define IS_CODE(VAR)     IS_META_SYS(VAR,{})
@@ -1111,7 +1111,7 @@ Author:
 
 #define IS_BOOLEAN(VAR)  IS_BOOL(VAR)
 #define IS_FUNCTION(VAR) IS_CODE(VAR)
-#define IS_INTEGER(VAR)  (if (IS_SCALAR(VAR)) then {floor (VAR) == (VAR)} else { false })
+#define IS_INTEGER(VAR)  (if (IS_SCALAR(VAR)) then {floor (VAR) == (VAR)} else {false})
 #define IS_NUMBER(VAR)   IS_SCALAR(VAR)
 
 #define FLOAT_TO_STRING(num)    (if (_this == 0) then {"0"} else {str parseNumber (str (_this % _this) + str floor abs _this) + "." + (str (abs _this - floor abs _this) select [2]) + "0"})
@@ -1308,7 +1308,7 @@ Example:
         myFunction = {
             PARAMS_1(_name);
             DEFAULT_PARAM(1,_numberOfLegs,2);
-            DEFAULT_PARAM(2,_hasAHead, true);
+            DEFAULT_PARAM(2,_hasAHead,true);
             // Rest of function follows...
         };
     (end)
@@ -1774,7 +1774,7 @@ Parameters:
 Example:
     (begin example)
         // print "true" if file exists
-        systemChat str FILE_EXISTS("\A3\ui_f\data\igui\cfg\cursors\weapon_ca.paa");
+        systemChat str FILE_EXISTS("\A3\ui_f\data\igui\cfg\cursors\weapon_ca.paa));
     (end)
 
 Author:

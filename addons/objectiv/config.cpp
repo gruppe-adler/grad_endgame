@@ -6,10 +6,10 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {};
+        requiredAddons[] = {QMAINPATCH};
         authors[] = { QAUTHOR };
         VERSION_CONFIG;
     };
 };
 
-#include <CfgSettings.hpp>
+#include <CfgEventHandlers.hpp>
