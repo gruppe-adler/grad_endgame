@@ -43,7 +43,7 @@ _endGameObjectives = _endGameObjectives - [_endGameObjective];
 
 // Go through all randomiser modules and gather a random objective from each
 {
-    private _randomObjective = [_x] call FUNC(GetRandomObjectiveFromRandomiser);
+    private _randomObjective = [_x] call FUNC(getRandomObjectiveFromRandomiser);
 
     if (!isNull _randomObjective) then
     {
@@ -77,10 +77,10 @@ private _basesEast = [];
     private _ownerSide = _x getVariable ["AttackingSide", "WEST"];
 
     switch (_ownerSide) do {
-        case "WEST" : 		{ _basesWest pushBack _x; };
-        case "EAST" : 		{ _basesEast pushBack _x; };
+        case "WEST" : 		    { _basesWest pushBack _x; };
+        case "EAST" : 		    { _basesEast pushBack _x; };
         case "RESISTANCE" : 	{ RESISTANCE };
-        case default 		{ CIVILIAN };
+        case default 		    { CIVILIAN };
     };
 } forEach _bases;
 
@@ -93,20 +93,21 @@ private _baseEast = selectRandom _basesEast;
     private _ownerSide = _x getVariable ["AttackingSide", "WEST"];
 
     // Convert the side string to actual side object
+    private _oppositeSide = CIVILIAN;
     private _side = switch (_ownerSide) do {
-        case "WEST" : 		{ WEST };
-        case "EAST" : 		{ EAST };
+        case "WEST" : 		    { _oppositeSide = EAST; WEST };
+        case "EAST" : 		    { _oppositeSide = WEST; EAST };
         case "RESISTANCE" : 	{ RESISTANCE };
-        case default 		{ CIVILIAN };
+        case default 		    { CIVILIAN };
     };
 
     // Flag the objective with the owner side
     _x setVariable [VAR_BASE_SIDE, _side, true];
 
     // Initialize objective
-    ["InitializeObjective", [_x, _side, ["GetOppositeSide", [_side]] call SELF]] call SELF;
-    ["Reveal", [_x, _side]] call OBJECTIVE;
-    ["SetObjectsVisibility", [_x, true]] call OBJECTIVE;
+    [_x, _side, _oppositeSide] call EFUNC(objectiv,init);
+    [_x, _side] call EFUNC(objectiv,reveal);
+    [_x, true] call EFUNC(objectiv,setObjectsVisibility);
 
     // Log
     ["Initialize: Base (%1) registered for (%2)", _x, _side] call BIS_fnc_logFormat;
@@ -117,7 +118,7 @@ private "_toDeleteBases";
 _toDeleteBases = _bases - [_baseWest, _baseEast];
 
 {
-    ["DeleteObjects", [_x]] call OBJECTIVE;
+    [_x] call EFUNC(objectiv,deleteObjects);
 } forEach _toDeleteBases;
 
 // Store data
@@ -129,13 +130,13 @@ missionNamespace setVariable [VAR_COMPLETED_OBJECTIVES, []];
 
 // Hide all objectives
 {
-    ["SetObjectsVisibility", [_x, false]] call OBJECTIVE;
+    [_x, false] call EFUNC(objectiv,setObjectsVisibility);
 } forEach _objectives + [_endGameObjective];
 
 // Delete objects from unwanted objectives
 {
-    ["DeleteObjects", [_x]] call OBJECTIVE;
-} forEach (["GetAllUnwantedObjectives"] call SELF) + _endGameObjectives;
+    [_x] call EFUNC(objectiv,deleteObjects);
+} forEach ([] call EFUNC(objectiv,getAllUnwantedObjectives)) + _endGameObjectives;
 
 // Suflle objectives
 private "_shuffledObjectives";

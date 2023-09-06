@@ -3,7 +3,7 @@ class CfgVehicles {
     class GVAR(ModuleHvtObjectivesInstance): ModuleHvtObjectivesInstance_F {
         author = "[A] Salbei";
         _generalMacro = QGVAR(ModuleHvtObjectivesInstance);
-        displayName = "GRAD EndGame Objectives Instance";
+        displayName = "GRAD Objectives Instance";
 		function = QUOTE(FUNC(setModule));
         category = "Objectives";
     };
@@ -12,7 +12,7 @@ class CfgVehicles {
     class GVAR(ModuleHvtSimpleObjective): ModuleHvtSimpleObjective_F {
         author = "[A] Salbei";
         _generalMacro = QGVAR(ModuleHvtSimpleObjective);
-        displayName = "GRAD End Game Simple Objective";
+        displayName = "GRAD Simple Objective";
 		function = QUOTE(FUNC(setModule));
         category = "Objectives";
     };
@@ -21,7 +21,7 @@ class CfgVehicles {
     class GVAR(ModuleHvtStartGameObjective): ModuleHvtStartGameObjective_F {
         author = "[A] Salbei";
         _generalMacro = QGVAR(ModuleHvtStartGameObjective);
-        displayName = "GRAD End Game Start Game Objective";
+        displayName = "GRAD Start Game Objective";
 		function = QUOTE(FUNC(setModule));
         category = "Objectives";
     };
@@ -30,10 +30,16 @@ class CfgVehicles {
     class GVAR(ModuleHvtEndGameObjective): ModuleHvtEndGameObjective_F {
         author = "[A] Salbei";
         _generalMacro = QGVAR(ModuleHvtEndGameObjective);
-        displayName = "GRAD End Game - End Game Objective";
+        displayName = "GRAD Objective";
 		function = QUOTE(FUNC(setModule));
         category = "Objectives";
     };
 
-    delete ModuleHvtEndGameObjective_F;
+    class ModuleHvtObjectiveRandomiser_F;
+    class GVAR(ModuleHvtObjectiveRandomiser): ModuleHvtObjectiveRandomiser_F {
+        author = "[A] Salbei";
+        _generalMacro = QGVAR(ModuleHvtObjectiveRandomiser);
+        displayName = "GRAD Objective Randomizer";
+		function = QUOTE(FUNC(setModule));
+    };
 };

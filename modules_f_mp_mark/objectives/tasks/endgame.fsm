@@ -1,0 +1,641 @@
+/*%FSM<COMPILE "F:\Steam\steamapps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg, EndGame">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,-220.000000,-510.000000,-130.000000,-460.000000,0.000000,"init"};
+item1[] = {"validate_objecti",4,218,-220.000000,-580.000000,-130.000000,-530.000000,1.000000,"validate" \n "objective"};
+item2[] = {"_",1,250,-220.000000,-660.000000,-130.000000,-610.000000,0.000000,""};
+item3[] = {"valid",4,218,-220.000000,-440.000000,-130.000000,-390.000000,0.000000,"valid"};
+item4[] = {"post_init",2,4346,-220.000000,-370.000000,-130.000000,-320.000000,0.000000,"post" \n "init"};
+item5[] = {"OnCarrier",4,218,-220.000000,-300.000000,-130.000000,-250.000000,0.000000,"OnCarrier"};
+item6[] = {"carried",2,250,-220.000000,-230.000000,-130.000000,-180.000000,0.000000,"carried"};
+item7[] = {"NeedsPickup",4,218,-330.000000,-230.000000,-240.000000,-180.000000,1.000000,"NeedsPickup"};
+item8[] = {"dropped",2,250,-440.000000,-230.000000,-350.000000,-180.000000,0.000000,"dropped"};
+item9[] = {"",7,210,-399.000000,-279.000000,-391.000000,-271.000000,0.000000,""};
+item10[] = {"Uploaded",4,218,110.000000,-230.000000,200.000000,-180.000000,0.000000,"Uploaded"};
+item11[] = {"__1",1,250,220.000000,-230.000000,310.000000,-180.000000,0.000000,""};
+item12[] = {"Timeout",4,218,-220.000000,-160.000000,-130.000000,-110.000000,2.000000,"Timeout"};
+item13[] = {"__2",1,250,-220.000000,-90.000000,-130.000000,-40.000000,0.000000,""};
+item14[] = {"",7,210,-399.000000,-139.000000,-391.000000,-131.000000,0.000000,""};
+item15[] = {"Uploading",4,218,-110.000000,-230.000000,-20.000000,-180.000000,0.000000,"Uploading"};
+item16[] = {"being_uploaded",2,250,0.000000,-230.000000,90.000000,-180.000000,0.000000,"being" \n "uploaded"};
+item17[] = {"",7,210,41.000000,11.000000,49.000000,19.000000,0.000000,""};
+item18[] = {"",7,210,-289.000000,11.000000,-281.000000,19.000000,0.000000,""};
+item19[] = {"",7,210,41.000000,-279.000000,49.000000,-271.000000,0.000000,""};
+item20[] = {"",7,210,-20.821342,-348.975464,-12.821358,-340.975464,0.000000,""};
+item21[] = {"",7,210,-20.821381,-138.110352,-12.821381,-130.110352,0.000000,""};
+link0[] = {0,1};
+link1[] = {0,3};
+link2[] = {1,2};
+link3[] = {3,4};
+link4[] = {4,5};
+link5[] = {4,20};
+link6[] = {5,6};
+link7[] = {6,7};
+link8[] = {6,12};
+link9[] = {6,15};
+link10[] = {7,8};
+link11[] = {8,9};
+link12[] = {8,14};
+link13[] = {9,5};
+link14[] = {10,11};
+link15[] = {12,13};
+link16[] = {14,12};
+link17[] = {15,16};
+link18[] = {16,10};
+link19[] = {16,17};
+link20[] = {16,19};
+link21[] = {17,18};
+link22[] = {18,7};
+link23[] = {19,5};
+link24[] = {20,21};
+link25[] = {21,12};
+globals[] = {0.000000,0,0,0,0,640,480,1,569,6316128,1,-452.130096,145.321381,150.246216,-596.576050,748,1005,1};
+window[] = {2,-1,-1,-1,-1,925,75,1515,75,3,766};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "EndGame";
+        class States
+        {
+                /*%FSM<STATE "init">*/
+                class init
+                {
+                        name = "init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"// The carrier function shortcut" \n
+                         "SELF = { _this call bis_fnc_moduleMPTypeHvt_carrier; };" \n
+                         "" \n
+                         "private [""_objective"", ""_leadingSide"", ""_loosingSide""];" \n
+                         "_objective 			= [_this, 0, objNull, [objNull]] call BIS_fnc_param;" \n
+                         "_leadingSide		= [_this, 1, sideUnknown, [sideUnknown]] call BIS_fnc_param;" \n
+                         "_loosingSide		= [_this, 2, sideUnknown, [sideUnknown]] call BIS_fnc_param;" \n
+                         "" \n
+                         "private [""_pickups"", ""_uploads""];" \n
+                         "_pickups = [""GetEndGameObjectivePickups"", [_objective]] call BIS_fnc_moduleHvtObjective;" \n
+                         "_uploads = [""GetEndGameObjectiveUploads"", [_objective]] call BIS_fnc_moduleHvtObjective;" \n
+                         "" \n
+                         "// Tasks" \n
+                         "private" \n
+                         "[" \n
+                         "	""_taskIdUpload"", ""_taskParamsUpload""," \n
+                         "	""_taskIdPickup"", ""_taskParamsPickup""," \n
+                         "	""_taskIdDefend"", ""_taskParamsDefend""" \n
+                         "];" \n
+                         "_taskIdUpload				= ""Upload"";" \n
+                         "_taskParamsUpload		= [""STR_A3_EndGame_Tasks_Description_Upload"", ""STR_A3_EndGame_Tasks_Title_Upload"", ""STR_A3_EndGame_Tasks_Waypoint_Upload""];" \n
+                         "_taskIdPickup 				= ""Pickup"";" \n
+                         "_taskParamsPickup		= [""STR_A3_EndGame_Tasks_Description_Pickup"", ""STR_A3_EndGame_Tasks_Title_Pickup"", ""STR_A3_EndGame_Tasks_Waypoint_Pickup""];" \n
+                         "_taskIdDefend				= ""Defend"";" \n
+                         "_taskParamsDefend		= [""STR_A3_EndGame_Tasks_Description_Prevent"", ""STR_A3_EndGame_Tasks_Title_Prevent"", ""STR_A3_EndGame_Tasks_Waypoint_Prevent""];" \n
+                         "" \n
+                         "private [""_taskTypePickup"", ""_taskTypeUpload""];" \n
+                         "_taskTypePickup 	= ""Search"";" \n
+                         "_taskTypeUpload 	= ""Interact"";" \n
+                         "_taskTypeDefend	= ""Defend"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "validate_objecti">*/
+                                class validate_objecti
+                                {
+                                        itemno = 1;
+                                        priority = 1.000000;
+                                        to="_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isServer" \n
+                                         "||" \n
+                                         "isNull _objective" \n
+                                         "||" \n
+                                         "count _pickups < 1" \n
+                                         "||" \n
+                                         "count _uploads < 2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "valid">*/
+                                class valid
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="post_init";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "_">*/
+                class _
+                {
+                        name = "_";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"[""EndGame.fsm: Server (%1) / Objective (%2) / Pickups (%3) / Uploads (%4)"", isServer, _objective, _pickups, _uploads] call BIS_fnc_error;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "post_init">*/
+                class post_init
+                {
+                        name = "post_init";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"// Shuffle pickups and uploads" \n
+                         "_pickups = _pickups call BIS_fnc_arrayShuffle;" \n
+                         "_uploads = _uploads call BIS_fnc_arrayShuffle;" \n
+                         "" \n
+                         "// The west upload" \n
+                         "BIS_westUpload = _uploads call BIS_fnc_selectRandom;" \n
+                         "BIS_westUpload setVariable [""BIS_hvt_downloadableObject"", true, true];" \n
+                         "BIS_westUpload setVariable [""BIS_hvt_downloadableOwnerSide"", WEST, true];" \n
+                         "BIS_westUpload setVariable [""BIS_hvt_objectObjective"", _objective, true];" \n
+                         "" \n
+                         "// Remove west upload from list" \n
+                         "_uploads deleteAt (_uploads find BIS_westUpload);" \n
+                         "" \n
+                         "// The east upload" \n
+                         "BIS_eastUpload = _uploads call BIS_fnc_selectRandom;" \n
+                         "BIS_eastUpload setVariable [""BIS_hvt_downloadableObject"", true, true];" \n
+                         "BIS_eastUpload setVariable [""BIS_hvt_downloadableOwnerSide"", EAST, true];" \n
+                         "BIS_eastUpload setVariable [""BIS_hvt_objectObjective"", _objective, true];" \n
+                         "" \n
+                         "// Final uploads" \n
+                         "_uploads = [BIS_westUpload, BIS_eastUpload];" \n
+                         "" \n
+                         "// Get random pickup point" \n
+                         "private ""_pickup"";" \n
+                         "_pickup = _pickups call BIS_fnc_selectRandom;" \n
+                         "" \n
+                         "// Function to retrieve upload object from side" \n
+                         "private ""_fn_getSideUpload"";" \n
+                         "_fn_getSideUpload =" \n
+                         "{" \n
+                         "	private [""_side""];" \n
+                         "	_side = [_this, 0, sideUnknown, [sideUnknown]] call BIS_fnc_param;" \n
+                         "	" \n
+                         "	private ""_upload"";" \n
+                         "	_upload = switch (_side) do" \n
+                         "	{" \n
+                         "		case WEST : 	{ BIS_westUpload };" \n
+                         "		case EAST : 	{ BIS_eastUpload };" \n
+                         "		case DEFAULT { objNull };" \n
+                         "	};" \n
+                         "	" \n
+                         "	_upload;" \n
+                         "};" \n
+                         "" \n
+                         "// The current leading/loosing sides, so we can still check who started leading/loosing" \n
+                         "private [""_currentLeadingSide"", ""_currentLoosingSide""];" \n
+                         "_currentLeadingSide = _leadingSide;" \n
+                         "_currentLoosingSide = _loosingSide;" \n
+                         "" \n
+                         "// The current upload object, depending on the leading side" \n
+                         "private ""_currentUpload"";" \n
+                         "_currentUpload = [_currentLeadingSide] call _fn_getSideUpload;" \n
+                         "" \n
+                         "// Create task for the leading side about pickup" \n
+                         "[format[""%1_%2"", _taskIdPickup, _currentLeadingSide], _currentLeadingSide, _taskParamsPickup, [_pickup, true], ""ASSIGNED"", -1, true, true, _taskTypePickup, true] call BIS_fnc_setTask;" \n
+                         "" \n
+                         "// Create task for the loosing side about defending upload site and block other team from uploading schematics" \n
+                         "[format[""%1_%2"", _taskIdDefend, _currentLoosingSide], _currentLoosingSide, _taskParamsDefend, getPosATL _currentUpload, ""ASSIGNED"", -1, true, true, _taskTypeDefend, true] call BIS_fnc_setTask;" \n
+                         "" \n
+                         "// The carrier and the carrier side" \n
+                         "private [""_currentCarrierPlayer"", ""_currentCarrierUid"", ""_currentCarrierSide""];" \n
+                         "_currentCarrierPlayer	= objNull;" \n
+                         "_currentCarrierUid		= """";" \n
+                         "_currentCarrierSide	= sideUnknown;" \n
+                         "" \n
+                         "// Initialize carrier scripts" \n
+                         "[""Initialize"", [_pickup, _uploads, _currentLeadingSide, _currentLoosingSide]] call SELF;" \n
+                         "[[""InitializeClient""], ""bis_fnc_moduleMPTypeHvt_carrier"", true, true] call BIS_fnc_mp;" \n
+                         "" \n
+                         "// The last check time" \n
+                         "private [""_lastCheckTime"", ""_checkInterval""];" \n
+                         "_lastCheckTime = time;" \n
+                         "_checkInterval = 1;" \n
+                         "" \n
+                         "// Conversations" \n
+                         "[""PickupSchematicsFirst"", _currentLeadingSide] call bis_fnc_moduleMPTypeHvt_conversations;" \n
+                         "[""PreventUploadFirst"", _currentLoosingSide] call bis_fnc_moduleMPTypeHvt_conversations;" \n
+                         "" \n
+                         "// Unlock respawn positions which are synced with this objective" \n
+                         "{" \n
+                         "	private [""_upload"", ""_side""];" \n
+                         "	_upload	= _x;" \n
+                         "	_side 		= if (_forEachIndex == 0) then { EAST } else { WEST };" \n
+                         "" \n
+                         "	// Go through all respawn points and return those which are connected to our upload object" \n
+                         "	private ""_respawnPoints"";" \n
+                         "	_respawnPoints = [];" \n
+                         "	" \n
+                         "	{" \n
+                         "		if (_upload in (synchronizedObjects _x)) then" \n
+                         "		{" \n
+                         "			_respawnPoints pushBack _x;" \n
+                         "		};" \n
+                         "	} forEach entities ""LocationRespawnPoint_F"";" \n
+                         "" \n
+                         "	{" \n
+                         "		[_side, position _x] call bis_fnc_addRespawnPosition;" \n
+                         "	} forEach _respawnPoints;" \n
+                         "} forEach _uploads;" \n
+                         "" \n
+                         "// Clean up pickup sites which are not going to be used" \n
+                         "private ""_triggers"";" \n
+                         "_triggers = [];" \n
+                         "" \n
+                         "{" \n
+                         "	if (_x isKindOf ""EmptyDetector"" && { !([_x, _pickup] call BIS_fnc_inTrigger) }) then" \n
+                         "	{" \n
+                         "		_triggers pushBack _x;" \n
+                         "	};" \n
+                         "} forEach (synchronizedObjects _objective);" \n
+                         "" \n
+                         "{" \n
+                         "	private [""_trigger"", ""_radius""];" \n
+                         "	_trigger 	= _x;" \n
+                         "	_radius 	= ((triggerArea _trigger) select 0) max ((triggerArea _trigger) select 1);" \n
+                         "" \n
+                         "	// All objects within the trigger" \n
+                         "	{" \n
+                         "		if (!(_x isKindOf ""Module_F"") && _x distance _trigger <= _radius && !(_x in _pickups)) then" \n
+                         "		{" \n
+                         "			deleteVehicle _x;" \n
+                         "		};" \n
+                         "	} forEach allMissionObjects ""All"";" \n
+                         "} forEach _triggers;" \n
+                         "" \n
+                         "// Handle revealing schematics to second phase loser" \n
+                         "// Schematics are revealed to the team having to defend" \n
+                         "// Revealing can only happen if the second phase winner did not yet pick up the schematics" \n
+                         "// This is only for the situation in which they are taking too much time to do the initial pickup" \n
+                         "private _revealSchematics = [_currentLoosingSide, _taskIdPickup, _taskIdDefend, _taskParamsPickup, _taskParamsDefend, _taskTypePickup, _taskTypeDefend, [_currentLoosingSide] call _fn_getSideUpload, _pickup] spawn" \n
+                         "{" \n
+                         "	private [""_losingSide"", ""_taskIdPickup"", ""_taskIdDefend"", ""_taskParamsPickup"", ""_taskParamsDefend"", ""_taskTypePickup"", ""_taskTypeDefend"", ""_upload"", ""_pickup""];" \n
+                         "	_losingSide = _this select 0;" \n
+                         "	_taskIdPickup = _this select 1;" \n
+                         "	_taskIdDefend = _this select 2;" \n
+                         "	_taskParamsPickup = _this select 3;" \n
+                         "	_taskParamsDefend = _this select 4;" \n
+                         "	_taskTypePickup = _this select 5;" \n
+                         "	_taskTypeDefend = _this select 6;" \n
+                         "	_upload = _this select 7;" \n
+                         "	_pickup = _this select 8;" \n
+                         "" \n
+                         "	// The delay" \n
+                         "	sleep 120;" \n
+                         "" \n
+                         "	// Create task for the losing side about pickup" \n
+                         "	[format[""%1_%2"", _taskIdPickup, _losingSide], _losingSide, _taskParamsPickup, [_pickup, true], ""ASSIGNED"", -1, true, true, _taskTypePickup, true] call BIS_fnc_setTask;" \n
+                         "	" \n
+                         "	// Cancel task for the losing side about defending upload site" \n
+                         "	[format[""%1_%2"", _taskIdDefend, _losingSide], _losingSide, _taskParamsDefend, getPosATL _upload, ""CANCELED"", -1, false, true, _taskTypeDefend, true] call BIS_fnc_setTask;" \n
+                         "" \n
+                         "	// Unlock schematics to the losing team too" \n
+                         "	[""Unlock""] call SELF;" \n
+                         "" \n
+                         "	// Conversations" \n
+                         "	[""PickupSchematics"", _losingSide] call bis_fnc_moduleMPTypeHvt_conversations;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Timeout">*/
+                                class Timeout
+                                {
+                                        itemno = 12;
+                                        priority = 2.000000;
+                                        to="__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { BIS_hvt_timeoutTarget }" \n
+                                         "&&" \n
+                                         "{ time >= BIS_hvt_timeoutTarget }"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "OnCarrier">*/
+                                class OnCarrier
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="carried";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"private [""_info"", ""_state""];" \n
+                                         "_info 	= missionNamespace getVariable [""BIS_hvt_pickupInfo"", [objNull, [objNull, """", sideUnknown], ""OnCarrier"", sideUnknown, []]];" \n
+                                         "_state = _info select 2;" \n
+                                         "" \n
+                                         "_state == ""OnCarrier"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "carried">*/
+                class carried
+                {
+                        name = "carried";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"// Terminate reveal schematics thread if currently running" \n
+                         "if (!isNil {_revealSchematics} && {!isNull _revealSchematics} && {!scriptDone _revealSchematics}) then" \n
+                         "{" \n
+                         "	terminate _revealSchematics;" \n
+                         "};" \n
+                         "" \n
+                         "// The pickup info" \n
+                         "private _pickupInfo 			= [""GetPickupInfo""] call SELF;" \n
+                         "private _pickupObject		= _pickupInfo select 0;" \n
+                         "private _pickupCarrier		= _pickupInfo select 1;" \n
+                         "private _pickupState			= _pickupInfo select 2;" \n
+                         "private _pickupLockedTo		= _pickupInfo select 3;" \n
+                         "" \n
+                         "// The carrier info" \n
+                         "private _carrierPlayer 		= _pickupCarrier select 0;" \n
+                         "private _carrierUid 			= _pickupCarrier select 1;" \n
+                         "private _carrierSide 		= _pickupCarrier select 2;" \n
+                         "" \n
+                         "// Current leading/loosing sides" \n
+                         "_currentLeadingSide = side _carrierPlayer;" \n
+                         "_currentLoosingSide = [""GetOppositeSide"", [_carrierSide]] call BIS_fnc_moduleHvtObjectivesInstance;" \n
+                         "" \n
+                         "// The current upload object, depending on the leading side" \n
+                         "private [""_currentUpload"", ""_otherUpload""];" \n
+                         "_currentUpload 	= [_currentLeadingSide] call _fn_getSideUpload;" \n
+                         "_otherUpload		= [_currentLoosingSide] call _fn_getSideUpload;" \n
+                         "" \n
+                         "// Handle tasks" \n
+                         "[" \n
+                         "	[format[""%1_%2"", _taskIdPickup, _currentLeadingSide], _currentLeadingSide, _taskParamsPickup, [_pickup, true], ""SUCCEEDED"", -1, true, true, _taskTypePickup, true]," \n
+                         "	[format[""%1_%2"", _taskIdUpload, _currentLeadingSide], _currentLeadingSide, _taskParamsUpload, [_currentUpload, true], ""ASSIGNED"", -1, true, true, _taskTypeUpload, true]," \n
+                         "	[format[""%1_%2"", _taskIdDefend, _currentLeadingSide], _currentLeadingSide, _taskParamsDefend, [_otherUpload, true], ""CANCELED"", -1, false, true, _taskTypeDefend, true]," \n
+                         "" \n
+                         "	[format[""%1_%2"", _taskIdPickup, _currentLoosingSide], _currentLoosingSide, _taskParamsPickup, [_pickup, true], ""CANCELED"", -1, false, true, _taskTypePickup, true]," \n
+                         "	[format[""%1_%2"", _taskIdUpload, _currentLoosingSide], _currentLoosingSide, _taskParamsUpload, [_otherUpload, true], ""CANCELED"", -1, false, true, _taskTypeUpload, true]," \n
+                         "	[format[""%1_%2"", _taskIdDefend, _currentLoosingSide], _currentLoosingSide, _taskParamsDefend, [_currentUpload, true], ""ASSIGNED"", -1, true, true, _taskTypeDefend, true]" \n
+                         "]" \n
+                         "spawn" \n
+                         "{" \n
+                         "	{" \n
+                         "		sleep (2 / (count _this));" \n
+                         "		_x call BIS_fnc_setTask;" \n
+                         "	} forEach _this;" \n
+                         "};" \n
+                         "" \n
+                         "// The last check time" \n
+                         "_lastCheckTime = time;" \n
+                         "" \n
+                         "// Conversations" \n
+                         "[""Upload"", _currentLeadingSide] call bis_fnc_moduleMPTypeHvt_conversations;" \n
+                         "[""PreventUpload"", _currentLoosingSide] call bis_fnc_moduleMPTypeHvt_conversations;" \n
+                         "" \n
+                         "// If timeout did not start yet, start it now" \n
+                         "if (isNil { BIS_hvt_timeoutTarget }) then" \n
+                         "{" \n
+                         "	BIS_hvt_timeoutTarget = time + 1200;" \n
+                         "	publicVariable ""BIS_hvt_timeoutTarget"";" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Timeout">*/
+                                class Timeout
+                                {
+                                        itemno = 12;
+                                        priority = 2.000000;
+                                        to="__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { BIS_hvt_timeoutTarget }" \n
+                                         "&&" \n
+                                         "{ time >= BIS_hvt_timeoutTarget }"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "NeedsPickup">*/
+                                class NeedsPickup
+                                {
+                                        itemno = 7;
+                                        priority = 1.000000;
+                                        to="dropped";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"private [""_info"", ""_state""];" \n
+                                         "_info 	= missionNamespace getVariable [""BIS_hvt_pickupInfo"", [objNull, [objNull, """", sideUnknown], ""OnCarrier"", sideUnknown, []]];" \n
+                                         "_state = _info select 2;" \n
+                                         "" \n
+                                         "_state == ""NeedsPickup"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Uploading">*/
+                                class Uploading
+                                {
+                                        itemno = 15;
+                                        priority = 0.000000;
+                                        to="being_uploaded";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"private [""_info"", ""_state""];" \n
+                                         "_info 	= missionNamespace getVariable [""BIS_hvt_pickupInfo"", [objNull, [objNull, """", sideUnknown], ""OnCarrier"", sideUnknown, []]];" \n
+                                         "_state = _info select 2;" \n
+                                         "" \n
+                                         "_state == ""Uploading"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "dropped">*/
+                class dropped
+                {
+                        name = "dropped";
+                        itemno = 8;
+                        init = /*%FSM<STATEINIT""">*/"// Cancel task for the leading side about upload" \n
+                         "[" \n
+                         "	[format[""%1_%2"", _taskIdPickup, _currentLeadingSide], _currentLeadingSide, _taskParamsPickup, [_pickup, true], ""ASSIGNED"", -1, true, true, _taskTypePickup, true]," \n
+                         "	[format[""%1_%2"", _taskIdUpload, _currentLeadingSide], _currentLeadingSide, _taskParamsUpload, [_currentUpload, true], ""CANCELED"", -1, false, true, _taskTypeUpload, true]," \n
+                         "	[format[""%1_%2"", _taskIdDefend, _currentLeadingSide], _currentLeadingSide, _taskParamsDefend, [_otherUpload, true], ""CANCELED"", -1, false, true, _taskTypeDefend, true]," \n
+                         "" \n
+                         "	[format[""%1_%2"", _taskIdPickup, _currentLoosingSide], _currentLoosingSide, _taskParamsPickup, [_pickup, true], ""ASSIGNED"", -1, true, true, _taskTypePickup, true]," \n
+                         "	[format[""%1_%2"", _taskIdUpload, _currentLoosingSide], _currentLoosingSide, _taskParamsUpload, [_otherUpload, true], ""CANCELED"", -1, false, true, _taskTypeUpload, true]," \n
+                         "	[format[""%1_%2"", _taskIdDefend, _currentLoosingSide], _currentLoosingSide, _taskParamsDefend, [_currentUpload, true], ""CANCELED"", -1, false, true, _taskTypeDefend, true]" \n
+                         "]" \n
+                         "spawn" \n
+                         "{" \n
+                         "	{" \n
+                         "		sleep (2 / (count _this));" \n
+                         "		_x call BIS_fnc_setTask;" \n
+                         "	} forEach _this;" \n
+                         "};" \n
+                         "" \n
+                         "// Reset data" \n
+                         "_currentCarrierPlayer	= objNull;" \n
+                         "_currentCarrierUid		= """";" \n
+                         "_currentCarrierSide	= sideUnknown;" \n
+                         "" \n
+                         "// The last check time" \n
+                         "_lastCheckTime = time;" \n
+                         "" \n
+                         "// Conversations" \n
+                         "[""PickupSchematics"", WEST] call bis_fnc_moduleMPTypeHvt_conversations;" \n
+                         "[""PickupSchematics"", EAST] call bis_fnc_moduleMPTypeHvt_conversations;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Timeout">*/
+                                class Timeout
+                                {
+                                        itemno = 12;
+                                        priority = 2.000000;
+                                        to="__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isNil { BIS_hvt_timeoutTarget }" \n
+                                         "&&" \n
+                                         "{ time >= BIS_hvt_timeoutTarget }"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "OnCarrier">*/
+                                class OnCarrier
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="carried";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"private [""_info"", ""_state""];" \n
+                                         "_info 	= missionNamespace getVariable [""BIS_hvt_pickupInfo"", [objNull, [objNull, """", sideUnknown], ""OnCarrier"", sideUnknown, []]];" \n
+                                         "_state = _info select 2;" \n
+                                         "" \n
+                                         "_state == ""OnCarrier"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__1">*/
+                class __1
+                {
+                        name = "__1";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"// Succeed task for the leading side about uploading" \n
+                         "[format [""%1_%2"", _taskIdUpload, _currentLeadingSide], _currentLeadingSide, _taskParamsUpload, getPosATL _currentUpload, ""SUCCEEDED"", -1, true, true, _taskTypeUpload, true] call BIS_fnc_setTask;" \n
+                         "" \n
+                         "// Fail task for the loosing side about defending upload site and block other team from uploading schematics" \n
+                         "[format [""%1_%2"", _taskIdDefend, _currentLoosingSide], _currentLoosingSide, _taskParamsDefend, getPosATL _currentUpload, ""FAILED"", -1, true, true, _taskTypeDefend, true] call BIS_fnc_setTask;" \n
+                         "" \n
+                         "// Register the Endgame winner" \n
+                         "[""RegisterWinner"", [_objective, _carrierSide]] call BIS_fnc_moduleHvtObjective;" \n
+                         "" \n
+                         "// The looser side" \n
+                         "private ""_looserSide"";" \n
+                         "_looserSide = [""GetOppositeSide"", [_carrierSide]] call BIS_fnc_moduleHvtObjectivesInstance;" \n
+                         "" \n
+                         "// Register the Endgame looser" \n
+                         "[""RegisterLooser"", [_objective, _looserSide]] call BIS_fnc_moduleHvtObjective;" \n
+                         "" \n
+                         "// End objective" \n
+                         "[""EndObjective"", [_objective]] call BIS_fnc_moduleHvtObjective;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__2">*/
+                class __2
+                {
+                        name = "__2";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"// Terminate reveal schematics thread if currently running" \n
+                         "if (!isNil {_revealSchematics} && {!isNull _revealSchematics} && {!scriptDone _revealSchematics}) then" \n
+                         "{" \n
+                         "	terminate _revealSchematics;" \n
+                         "};" \n
+                         "" \n
+                         "// Cancel tasks for both sides" \n
+                         "{" \n
+                         "	[format [""%1_%2"", _taskIdUpload, _x], _x, _taskParamsUpload, getPosATL _currentUpload, ""CANCELED"", -1, true, true, _taskTypeUpload, true] call BIS_fnc_setTask;" \n
+                         "	[format [""%1_%2"", _taskIdDefend, _x], _x, _taskParamsDefend, getPosATL _currentUpload, ""CANCELED"", -1, true, true, _taskTypeDefend, true] call BIS_fnc_setTask;" \n
+                         "	[format [""%1_%2"", _taskIdPickup, _x], _x, _taskParamsPickup, [_pickup, true], ""CANCELED"", -1, true, true, _taskTypePickup, true] call BIS_fnc_setTask;" \n
+                         "} forEach [WEST, EAST];" \n
+                         "" \n
+                         "// Register draw" \n
+                         "[""RegisterDraw"", [_objective, true]] call BIS_fnc_moduleHvtObjective;" \n
+                         "" \n
+                         "// End objective" \n
+                         "[""EndObjective"", [_objective]] call BIS_fnc_moduleHvtObjective;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "being_uploaded">*/
+                class being_uploaded
+                {
+                        name = "being_uploaded";
+                        itemno = 16;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "NeedsPickup">*/
+                                class NeedsPickup
+                                {
+                                        itemno = 7;
+                                        priority = 1.000000;
+                                        to="dropped";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"private [""_info"", ""_state""];" \n
+                                         "_info 	= missionNamespace getVariable [""BIS_hvt_pickupInfo"", [objNull, [objNull, """", sideUnknown], ""OnCarrier"", sideUnknown, []]];" \n
+                                         "_state = _info select 2;" \n
+                                         "" \n
+                                         "_state == ""NeedsPickup"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "OnCarrier">*/
+                                class OnCarrier
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="carried";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"private [""_info"", ""_state""];" \n
+                                         "_info 	= missionNamespace getVariable [""BIS_hvt_pickupInfo"", [objNull, [objNull, """", sideUnknown], ""OnCarrier"", sideUnknown, []]];" \n
+                                         "_state = _info select 2;" \n
+                                         "" \n
+                                         "_state == ""OnCarrier"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Uploaded">*/
+                                class Uploaded
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"private [""_info"", ""_state""];" \n
+                                         "_info 	= missionNamespace getVariable [""BIS_hvt_pickupInfo"", [objNull, [objNull, """", sideUnknown], ""OnCarrier"", sideUnknown, []]];" \n
+                                         "_state = _info select 2;" \n
+                                         "" \n
+                                         "_state == ""Uploaded"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="init";
+        finalStates[] =
+        {
+                "_",
+                "__1",
+                "__2",
+        };
+};
+/*%FSM</COMPILE>*/

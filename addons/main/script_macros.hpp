@@ -29,3 +29,14 @@
 #define CLASS_SIMPLE_OBJECTIVE			QEGVAR(initialize,ModuleHvtSimpleObjective)
 #define CLASS_STARTGAME_OBJECTIVE		QEGVAR(initialize,ModuleHvtStartGameObjective)
 #define CLASS_ENDGAME_OBJECTIVE			QEGVAR(initialize,ModuleHvtEndGameObjective)
+
+// Objective variables
+#define VAR_DOWNLOAD_OBJECT	            "DownloadObject"
+#define VAR_DOWNLOAD_RADIUS	            "DownloadRadius"
+#define VAR_UPLOAD_RADIUS	            "UploadRadius"
+#define VAR_TASK_DESCRIPTION	        "TaskDescription"
+#define VAR_SUCCEED_RADIUS	            "SucceedRadius"
+#define VAR_TIME_LIMIT		            "TimeLimit"
+#define VAR_PICKUP_OBJECTS	            "PickupObjects"
+#define VAR_UPLOAD_OBJECTS	            "UploadObjects"
+#define VAR_IMEDIATE_DOWNLOAD	        "ImmediateDownload"

@@ -1,8 +1,8 @@
 #include "script_component.hpp"
 
-private _logic = missionNamespace getVariable "BIS_MODULEHVTOBJECTIVESINSTANCE_LOGIC";
+private _logic = missionNamespace getVariable VAR_LOGIC;
 
-private _objects 	= synchronizedObjects _logic;
+private _objects = synchronizedObjects _logic;
 private _objectives	= [];
 
 {
