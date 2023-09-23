@@ -1,5 +1,7 @@
 #include "script_component.hpp"
 
+if !(isServer) exitWith {};
+
 params [
     ["_logic", objNull, [objNull]], 
     ["_endGameThreshold", 3, [0]]
@@ -114,8 +116,7 @@ private _baseEast = selectRandom _basesEast;
 } forEach [_baseWest, _baseEast];
 
 // Delete objects and clutter from bases which were not used
-private "_toDeleteBases";
-_toDeleteBases = _bases - [_baseWest, _baseEast];
+private _toDeleteBases = _bases - [_baseWest, _baseEast];
 
 {
     [_x] call EFUNC(objectiv,deleteObjects);
@@ -139,15 +140,17 @@ missionNamespace setVariable [VAR_COMPLETED_OBJECTIVES, []];
 } forEach ([] call EFUNC(objectiv,getAllUnwantedObjectives)) + _endGameObjectives;
 
 // Suflle objectives
-private "_shuffledObjectives";
-_shuffledObjectives = _objectives call bis_fnc_arrayShuffle;
+private _shuffledObjectives = _objectives call CBA_fnc_shuffle;
 missionNamespace setVariable [VAR_OBJECTIVES_ORDERED, _shuffledObjectives];
 
 // Init server and players
 [[], "BIS_fnc_moduleHvtInit", true, true] call BIS_fnc_mp;
 
+[] call EFUNC(server,initServer);
+[] remoteExecCall [QUOTE(EFUNC(player,initPlayer)), -2, false];
+
 // Music
-["PlayMusic", [1, sideUnknown]] call SELF;
+[1, sideUnknown] call FUNC(playMusic);
 
 // Log
 ["Initialize: %1 / %2 / %3 / %4", _logic, _randomisers, _objectives] call BIS_fnc_logFormat;
